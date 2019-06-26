@@ -1,13 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
+//@flow
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Animated, Easing, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, Animated, Dimensions} from 'react-native';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -15,7 +8,6 @@ export default class App extends Component<Props> {
         super();
         this.squareAnimatedValue = new Animated.Value(-1);
         this.opacityValue = new Animated.Value(1);
-        this.opacityForText = new Animated.Value(0);
         this.textAnimatedValues = [];
         this.sequence = [];
         this.deviceWidth = Dimensions.get('window').width;
@@ -34,18 +26,11 @@ export default class App extends Component<Props> {
                         duration: 1000,
                         useNativeDriver: true
                     }),
-                    Animated.parallel([
-                        Animated.timing(this.opacityValue, {
-                            toValue: 0,
-                            duration: 1000,
-                            useNativeDriver: true
-                        }),
-                        Animated.timing(this.opacityForText, {
-                            toValue: 1,
-                            duration: 1000,
-                            useNativeDriver: true
-                        })
-                    ])
+                    Animated.timing(this.opacityValue, {
+                        toValue: 0,
+                        duration: 1000,
+                        useNativeDriver: true
+                    }),
                 ]
             ),
             Animated.parallel(this.sequence),
@@ -53,11 +38,6 @@ export default class App extends Component<Props> {
                     Animated.parallel([
                         Animated.timing(this.opacityValue, {
                             toValue: 1,
-                            duration: 1000,
-                            useNativeDriver: true
-                        }),
-                        Animated.timing(this.opacityForText, {
-                            toValue: 0,
                             duration: 1000,
                             useNativeDriver: true
                         }),
@@ -109,7 +89,7 @@ export default class App extends Component<Props> {
                     key={index}
                 >
                     {index < space ? <Animated.Text
-                        style={[position(index, 120), styles.text]}
+                        style={[position(index, 70), styles.text]}
                     >{el}</Animated.Text> : null}</View>
             );
             outputText.afterSpace.push(
@@ -117,7 +97,7 @@ export default class App extends Component<Props> {
                     key={index}
                 >
                     {index > space ? <Animated.Text
-                        style={[position(index, 105), styles.text]}
+                        style={[position(index, 55), styles.text]}
                     >{el}</Animated.Text> : null}</View>
             );
         });
@@ -167,7 +147,7 @@ export default class App extends Component<Props> {
                 >
                 </Animated.View>
                 <Animated.View
-                    style={[styles.animatedElementForText, position, {opacity: this.opacityForText}]}
+                    style={[styles.animatedElementForText, position]}
                 >
                     <View>
                         <View style={styles.row}>{text.beforeSpace}</View>
@@ -191,7 +171,7 @@ const
             opacity: 1,
             flex: 1,
             justifyContent: 'center',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             flexDirection: 'row',
             position: 'absolute',
             width: '50%',
@@ -203,10 +183,9 @@ const
             overflow: 'hidden'
         },
         animatedElementForText: {
-            opacity: 0,
             flex: 1,
             justifyContent: 'center',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             flexDirection: 'row',
             position: 'absolute',
             width: '50%',
