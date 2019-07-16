@@ -81,3 +81,28 @@ const logoutSuccess = dispatch => {
 const logoutFail = dispatch => {
     dispatch({type: types.LOGOUT_ERROR});
 };
+
+
+export const getUserData = () => {
+    return dispatch => {
+        dispatch({type: types.GET_USER_START});
+        const {uid} = firebase.auth().currentUser;
+        const db = firebase.firestore();
+        const docRef = db.collection("users").doc(`${uid}`);
+        docRef.get().then((doc) => {
+            getUserSuccess(dispatch, doc.data());
+        }).catch(() => {
+            getUserFail(dispatch)
+        });
+    }
+};
+
+const getUserSuccess = (dispatch, data) => {
+    dispatch({
+        type: types.GET_USER_FINISHED,
+        payload: data
+    })
+};
+const getUserFail = dispatch => {
+    dispatch({type: types.GET_USER_ERROR})
+};
