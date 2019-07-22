@@ -8,16 +8,12 @@ import Performance from './src/components/Performance'
 import NativeModule from './src/components/NativeModule'
 import {Provider} from 'react-redux'
 import {store} from './src/store/store.js';
-import FireBase from './src/FireBase/firebase'
 
 type Props = {};
+
 export default class App extends Component<Props> {
     constructor() {
         super();
-    }
-
-    componentDidMount() {
-        const fireBase = new FireBase();
     }
 
 
@@ -38,3 +34,4 @@ export default class App extends Component<Props> {
         )
     }
 }
+

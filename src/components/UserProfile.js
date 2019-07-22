@@ -2,7 +2,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Input, Button, Avatar, Overlay, Tooltip} from 'react-native-elements'
+import {Input, Button, Avatar, Overlay} from 'react-native-elements'
+import * as firebase from 'react-native-firebase';
 import 'firebase/firestore';
 import {logout, getUserData} from "../actions/userActions.js";
 import {connect} from 'react-redux';
@@ -10,17 +11,32 @@ import {connect} from 'react-redux';
 type Props = {};
 
 class InputForm extends Component<Props> {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             overlayShown: false,
-            username: ''
+            username: this.props.auth.userData.username
         };
     }
 
 
     onChangeText = (text) => {
         this.setState({username: text})
+    };
+
+    changeUserName = () => {
+        const {currentUser} = firebase.auth();
+        try {
+            const db = firebase.firestore();
+            db.collection("users").doc(`${currentUser.uid}`).update({
+                username: this.state.username,
+            }).then(() => {
+                console.log('You successfully changed your username');
+                this.props.getUserData()
+            });
+        } catch (error) {
+            alert(error);
+        }
     };
 
     render() {
@@ -77,7 +93,7 @@ class InputForm extends Component<Props> {
                                     type='font-awesome'
                                     size={24}
                                     color='green'
-                                    onPress={() => console.log('hello')}/>
+                                    onPress={() => this.changeUserName()}/>
                             </View>
                         </View>
 

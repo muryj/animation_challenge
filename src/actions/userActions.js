@@ -1,6 +1,6 @@
 import types from './types'
-import * as firebase from 'firebase';
-import 'firebase/firestore';
+import * as firebase from 'react-native-firebase';
+import 'firebase/firestore'
 
 export const createUser = (email, password) => {
     const tmpString = email.split('@');
@@ -66,8 +66,8 @@ const loginUserSuccess = (dispatch, user) => {
 export const logout = () => {
     return dispatch => {
         dispatch({type: types.LOGOUT_START});
-        firebase
-            .auth()
+        const loggedUser = firebase.auth();
+        loggedUser
             .signOut()
             .then(() => logoutSuccess(dispatch))
             .catch(() => logoutFail(dispatch));
@@ -105,4 +105,24 @@ const getUserSuccess = (dispatch, data) => {
 };
 const getUserFail = dispatch => {
     dispatch({type: types.GET_USER_ERROR})
+};
+
+export const setUser = (user) => {
+    return dispatch => {
+        const {uid} = user;
+        const db = firebase.firestore();
+        const docRef = db.collection("users").doc(`${uid}`);
+        docRef.get().then((doc) => {
+            getUserSuccess(dispatch, doc.data());
+        }).catch(() => {
+            getUserFail(dispatch)
+        });
+        dispatch({type: types.SET_USER, payload: user})
+    }
+};
+
+export const clearStore = () => {
+    return dispatch => {
+        dispatch({type: types.CLEAR_STORE})
+    }
 };

@@ -28,13 +28,25 @@ const auth = (state = initialState, action) => {
         case types.LOGOUT_ERROR:
             return {...state, loading: false, errorLogout: 'Error during logout'};
         case types.LOGOUT_FINISHED:
-            return {...state, ...initialState, loading: false, errorLogout: ''};
+            return {...state, userData: null, user: null, loading: false, errorLogout: ''};
         case types.GET_USER_START:
             return {...state, loading: true};
         case types.GET_USER_ERROR:
             return {...state, errorGettingUser: 'Getting user failed!', loading: false};
         case types.GET_USER_FINISHED:
             return {...state, loading: false, errorGettingUser: '', userData: action.payload};
+        case types.SET_USER:
+            return {...state, user: action.payload};
+        case types.CLEAR_STORE:
+            return {
+                errorLoging: '',
+                errorCreating: '',
+                errorGettingUser: '',
+                errorLogout: '',
+                loading: false,
+                user: null,
+                userData: null
+            };
         default:
             return state;
     }

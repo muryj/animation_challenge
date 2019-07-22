@@ -138,6 +138,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-firebase')
+    implementation project(':react-native-fcm')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-svg')
     implementation project(':react-native-config')

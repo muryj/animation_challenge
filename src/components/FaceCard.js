@@ -3,12 +3,20 @@ import React, {Component} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {Button} from 'react-native-elements'
+import firebase from "react-native-firebase";
+import {connect} from 'react-redux'
+import {setUser, clearStore} from "../actions/userActions";
 
 type Props = {};
-export default class FaceCard extends Component<Props> {
+
+class FaceCard extends Component<Props> {
     constructor() {
         super();
     }
+
+    componentDidMount() {
+        this.props.clearStore()
+    };
 
     render() {
         return (
@@ -73,3 +81,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 });
+const mapDispatchToProps = {
+    setUser,
+    clearStore
+};
+export default connect(null, mapDispatchToProps)(FaceCard)

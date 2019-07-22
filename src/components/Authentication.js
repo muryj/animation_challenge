@@ -1,14 +1,9 @@
 //@flow
 import React, {Component} from 'react';
-import {StyleSheet, View, Image, TouchableOpacity, Text, ActivityIndicator, Animated} from 'react-native';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import InputForm from './InputForm'
 import UserProfile from './UserProfile'
 import {connect} from 'react-redux';
-import images from '../images'
-import {createUser, loginUser, logout} from "../actions/userActions";
-import * as firebase from 'firebase';
-import 'firebase/firestore';
-import {Button} from "react-native-elements";
 
 type Props = {};
 
@@ -21,7 +16,6 @@ class Authentication extends Component<Props> {
             signUp: false,
         };
     }
-
 
     onChangeText = (text, field) => {
         this.setState({[field]: text})
@@ -37,7 +31,7 @@ class Authentication extends Component<Props> {
         const {email, password, signUp} = this.state;
         if (user) {
             return (
-                    <UserProfile/>
+                <UserProfile/>
             )
         }
         return (
