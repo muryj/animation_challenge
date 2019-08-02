@@ -26,7 +26,7 @@ export const createUser = (email, password) => {
                     alert(error);
                 }
             })
-            .catch(() => createUserFail(dispatch)).finally(() => console.log(3254));
+            .catch(() => createUserFail(dispatch));
     };
 };
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1023951777549-mp1oi31kv7tq3mu7iiqhha370k5q04ig.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1023951777549-mp1oi31kv7tq3mu7iiqhha370k5q04ig</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC7vt9W-cgFnIiTJlgdO-hKljgoVkCFduk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1023951777549</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>animations-challenge</string>
+	<key>PROJECT_ID</key>
+	<string>englishmaster-bd795</string>
+	<key>STORAGE_BUCKET</key>
+	<string>englishmaster-bd795.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1023951777549:ios:5c943be7c1ecdc6f</string>
+	<key>DATABASE_URL</key>
+	<string>https://englishmaster-bd795.firebaseio.com</string>
+</dict>
+</plist>
